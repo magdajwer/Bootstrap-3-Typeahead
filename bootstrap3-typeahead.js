@@ -133,7 +133,7 @@
 
       var worker = $.proxy(function() {
         
-        if($.isFunction(this.source)) this.source(this.query, $.proxy(this.process, this));
+        if ($.isFunction(this.source)) this.source(this.query, $.proxy(this.process, this), $.proxy(this.process, this));
         else if (this.source) {
           this.process(this.source);
         }
@@ -243,6 +243,9 @@
     },
 
     displayText: function(item) {
+      if (this.options.display) {
+        return item[this.options.display];
+      }
       return item.name || item;
     },
 
